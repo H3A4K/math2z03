@@ -1,0 +1,98 @@
+% Note that variables (x, y) for approximations, are named by the value
+% after the decimal of their respective 'h' value. (e.g. h=0.2 -> (x2, y2))
+
+% 1.a) 
+% Initialisation of variables
+h = 0.2;
+X = 2;
+N = round(X / h);
+x2 = zeros(1,N+1); 
+y2 = zeros(1,N+1);
+
+% initial conditions
+x2(1) = 0;
+y2(1) = 6;
+
+% Main loop
+for n = 1:N
+  x2(n+1) = x2(n) + h;
+  y2(n+1) = y2(n) + h*(9*x2(n) + y2(n));
+end
+
+y2(N + 1)
+
+% 1.b) 
+% instantiation of variables
+h = 0.1;
+X = 2;
+N = round(X / h);
+x1 = zeros(1,N+1);
+y1 = zeros(1,N+1);
+
+% initial conditions
+x1(1) = 0;
+y1(1) = 6;
+
+% Main loop
+for n = 1:N
+  x1(n+1) = x1(n) + h;
+  y1(n+1) = y1(n) + h*(9*x1(n) + y1(n));
+end
+
+y1(N + 1)
+
+
+% 3)
+% instantiation of variables
+h = 0.4;
+X = 2;
+N = round(X / h);
+x4 = zeros(1,N+1);
+y4 = zeros(1,N+1);
+
+% initial conditions
+x4(1) = 0;
+y4(1) = 6;
+
+% Main loop
+for n = 1:N
+  x4(n+1) = x4(n) + h;
+  y4(n+1) = y4(n) + h*(9*x4(n) + y4(n));
+end
+
+% exact solution
+hExact = 0.01;
+xExact = 0:hExact:2;
+yExact = 15*exp(xExact) - 9*xExact - 9;
+
+% plotting
+figure(1);
+plot(xExact,yExact,'r',x1,y1,'b',x2,y2,'g',x4,y4,'y');
+title('Alexander Perlock : 400619457');
+legend('exact solution','numerical approximation (h = 0.1)', 'numerical approximation (h = 0.2)', 'numerical approximation (h = 0.4)');
+xlabel('x'); ylabel('y');
+
+
+% 4)
+% instantiation
+h = 0.01;
+X = 18;
+N = round(X / h);
+x = zeros(1, N);
+y = zeros(1, N);
+
+% initial conditions
+x(1) = 0;
+y(1) = 8.69;
+
+% Main loop
+for n = 1:N
+  x(n+1) = x(n) + h;
+  y(n+1) = y(n) + h*(-y(n) / sqrt(8.7^2 - (y(n))^2));
+end
+
+% plotting
+figure(2);
+plot(x,y,'Color', [1 0.5 0]);
+title('Alexander Perlock : 400619457');
+xlabel('x'); ylabel('y');
